@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://5d2235dc2ba8cf0014c44de6.mockapi.io/api/v1/',
+  apiUrl: 'https://sav-sonom.herokuapp.com/',
   apiRoutes: {
-    userLists: 'users',
-    deleteUser: 'users',
+    userLists: 'fiches',
+    deleteUser: 'fiche/:id',
     updateUser: 'users'
   }
 };
