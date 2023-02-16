@@ -3,6 +3,7 @@ import { SwUpdate, SwPush } from '@angular/service-worker';
 import { Router, ActivatedRoute, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private snackbar: MatSnackBar, public updates: SwUpdate) { }
 
   ngOnInit() {
+    if (this.updates.isEnabled) {
     this.updates.available.subscribe(update => {
       this.update = true;
       const snack = this.snackbar.open('New version available. Load New Version?', 'Reload', {
@@ -25,5 +27,5 @@ export class AppComponent implements OnInit {
         this.updates.activateUpdate().then(() => document.location.reload());
       });
     });
-  }
+  }}
 }

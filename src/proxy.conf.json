@@ -1,7 +1,6 @@
 {
-    "https://sav-sonom.herokuapp.com/*": {
-        "target": "http://localhost:4200",
-        "secure": false,
-        "logLevel": "debug"
+    "/api/*": {
+        "target": "http://localhost:5000",
+        "secure": false
     }
 }

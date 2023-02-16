@@ -4,11 +4,13 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://sav-sonom.herokuapp.com/',
+  apiUrl: 'http://localhost:5000/api/',
   apiRoutes: {
     userLists: 'fiches',
-    deleteUser: 'fiche/:id',
-    updateUser: 'users'
+    addUser:'fiche',
+    deleteUser: 'fiche',
+    updateUser: 'update_client'
+
   }
 };
 

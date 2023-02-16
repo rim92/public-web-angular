@@ -3,18 +3,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, FormGroup, FormArray, FormBuilder, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
 import { ApiService } from '../../core/service/api.service';
 import { environment } from '../../../environments/environment';
+
 @Component({
-  selector: 'app-edit-dialog',
-  templateUrl: './edit-dialog.component.html',
-  styleUrls: ['./edit-dialog.component.scss']
+  selector: 'app-print-dialog',
+  templateUrl: './print-dialog.component.html',
+  styleUrls: ['./print-dialog.component.scss']
 })
-export class EditDialogComponent implements OnInit {
+export class PrintDialogComponent implements OnInit {
   userForm: FormGroup;
   loading: boolean;
   // minDate: Date = new Date();
   // maxDate: Date = new Date();
   usersEndPoint: { userLists: string; addUser:string; deleteUser: string; updateUser: string; };
-  constructor(public formBuilder: FormBuilder, public data: ApiService, public dialogRef: MatDialogRef<EditDialogComponent>,
+  constructor(public formBuilder: FormBuilder, public data: ApiService, public dialogRef: MatDialogRef<PrintDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public userdata: any) {
     this.userForm = this.createUserForm();
 
@@ -25,9 +26,6 @@ export class EditDialogComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-
 
 
 
@@ -54,22 +52,23 @@ export class EditDialogComponent implements OnInit {
       date: [editUser.date ? editUser.date : new Date(), Validators.required],
 
       date_achat: [editUser.date_achat ? editUser.date_achat : null],
-
-
-  frais_diagnostic: [editUser.frais_diagnostic ? editUser.frais_diagnostic : null],
-        num_serie: [editUser.num_serie ? editUser.num_serie : null,
+ num_serie: [editUser.num_serie ? editUser.num_serie : null,
           Validators.compose([Validators.required, Validators.pattern(this.data.namePattern)])],
 
 
           garantie: [editUser.garantie ? editUser.garantie : null],
 
-            panne_client: [editUser.panne_client ? editUser.panne_client : null]
+            panne_client: [editUser.panne_client ? editUser.panne_client : null],
+            reparation: [editUser.reparation ? editUser.reparation : null],
+            frais_diagnostic: [editUser.frais_diagnostic ? editUser.frais_diagnostic : null]
 
 
     });
   }
 
-
+  public printMe(): void {
+    window.print();
+  }
 
     
     
@@ -104,11 +103,11 @@ export class EditDialogComponent implements OnInit {
     date_achat: this.userForm.value.date_achat,
     frais_diagnostic:this.userForm.value.frais_diagnostic,
     garantie:this.userForm.value.garantie,
-    reparation: null,
+    reparation: this.userForm.value.reparation,
     panne_client:this.userForm.value.panne_client,
     num_serie:this.userForm.value.num_serie,
-    panne_signaler:null,
-    diagnostic:null,
+    panne_signaler:this.userForm.value.panne_signaler,
+    diagnostic:this.userForm.value.diagnostic,
     reference_piece:null,
     prix_piece:null,
     prix_reparation:null,

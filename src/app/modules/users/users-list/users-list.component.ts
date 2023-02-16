@@ -25,13 +25,15 @@ export class UsersListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   usersEndPoint: any;
   allUsers: any = {
-    id: String,
-    first_name: String,
-    last_name: String,
+   nom: String,
+    prenom: String,
+    tel:String,
+    designation:String,
+    date:String,
     email: String,
-    DOB: String
+    frais_diagnostic:String
   };
-  displayedColumns: string[] = ['Id', 'First Name', 'Last Name', 'Email', 'Date of Birth', 'Action'];
+  displayedColumns: string[] = [ 'Date','Client','tel','Designation','Frais','Etat','Action'];
   dataSource: MatTableDataSource<any>;
   loading: boolean;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -50,6 +52,8 @@ export class UsersListComponent implements OnInit {
     this.loading = true;
     this.data.getDataX(this.usersEndPoint.userLists).subscribe((result) => {
       this.allUsers = result;
+      console.log("okk");
+      console.log(result);
       this.loading = false;
       // console.log(this.allUsers);
       this.dataSource = new MatTableDataSource(this.allUsers);
@@ -68,17 +72,23 @@ export class UsersListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  
   public openDeleteDialog(deleteUser): void {
+
+   
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: 'auto',
-      data: `Are you sure want to delete ${deleteUser.first_name} ${deleteUser.last_name} ?`
+      data: `Are you sure want to delete ${deleteUser.prenom} ${deleteUser.nom} ?`
     });
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.loading = true;
-        this.data.deleteDataX(this.usersEndPoint.deleteUser + '/' + deleteUser.id).subscribe((res) => {
-          this.getAllUsers();
-          this.data.openSnackBar(`${res.first_name} ${res.last_name} deleted successfully`, '', 'bg-success');
+        
+        this.data.deleteDataX(this.usersEndPoint.deleteUser + '/'+deleteUser._id ).subscribe((res) => {
+          // this.getAllUsers();
+          this.data.openSnackBar(` deleted successfully`, '', 'bg-success');
+          location.reload();
         }, (err) => {
           // console.log(err);
           this.data.openSnackBar('Internal server, Please try again', '', 'bg-danger');
@@ -86,36 +96,48 @@ export class UsersListComponent implements OnInit {
       }
     });
   }
-  public openEditDialog(editUser = { id: '', first_name: '', last_name: '', DOB: '' }): void {
+
+
+  public openEditDialog(editUser={_id:'',nom:'',prenom:'',tel:'',email:'',designation:'',date_achat:'',num_serie:'',garantie:'',panne_client:'',reparation:'',frais_diagnostic:''}): void {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       width: 'auto',
       data: { editUser }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(result);
+      this.loading = true;
       if (typeof (result) !== 'undefined') {
-        result.id = editUser.id ? editUser.id : '';
+        result.id = editUser._id ? editUser._id : '';
         // result.DOB = this.formatDate(result.DOB);
-        result.id !== '' ? this.editUser(result) : this.addUser(result);
+        console.log("resuultt"+ result.id);
+        result.id !== '' ? this.addUser(result) : this.editUser(result);
       }
     });
   }
-  public editUser(userVal) {
-    this.loading = true;
-    this.data.putDataX(userVal, this.usersEndPoint.updateUser + '/' + userVal.id).subscribe((res) => {
+  public editUser(result) {
+    //this.loading = true;
+    console.log("userrr:"+result.id);
+    this.data.putDataX(result, this.usersEndPoint+'/' +result.id+'/'+result.nom+'/'+result.prenom+'/'+result.tel+'/'+result.email+'/'+result.designation+'/'+result.marque+'/'+result.date+'/'+result.date_achat+'/'+result.num_serie+'/'+result.garantie+'/'+result.panne_client+'/'+result.reparation+"/"+result.frais_diagnostic ).subscribe((res) => {
       this.getAllUsers();
-      this.data.openSnackBar(`${res.first_name} ${res.last_name} updated successfully`, '', 'bg-success');
+    this.data.openSnackBar(`${res.nom} ${res.prenom} updated successfully`, '', 'bg-success');
+    this.router.navigate(['/users']);
     }, (err) => {
       this.loading = false;
       // console.log(err);
-      this.data.openSnackBar('Internal server, Please try again', '', 'bg-danger');
+     // this.data.openSnackBar('Internal server, Please try again', '', 'bg-danger');
     });
   }
+
+
   public addUser(userVal) {
     this.loading = true;
-    this.data.postDataX(userVal, this.usersEndPoint.updateUser).subscribe((res) => {
+    this.data.postDataX(userVal, this.usersEndPoint.addUser).subscribe((res) => {
       this.getAllUsers();
+
+
       this.data.openSnackBar(`${res.first_name} ${res.last_name} added successfully`, '', 'bg-success');
+     // this.router.navigate(['/users']);
+      location.reload();
     }, (err) => {
       this.loading = false;
       // console.log(err);

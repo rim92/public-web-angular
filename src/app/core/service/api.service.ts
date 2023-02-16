@@ -41,13 +41,43 @@ export class ApiService {
   }
   // POST Method
   public postDataX(credentials, type): Observable<any> {
-    return this.http.post(this.apiUrl + type, credentials).pipe(
+    return this.http.post(this.apiUrl + "fiche", credentials).pipe(
       map((result: any) => result),
       catchError((error: HttpErrorResponse) => {
         return throwError(error);
       })
     );
   }
+
+
+
+  // Add candidate
+  AddClient(data: any): Observable<any> {
+    console.log(data);
+    let API_URL = `${this.apiUrl}fiche`;
+    return this.http.post(this.apiUrl, data).pipe( map((result: any) => result),
+        catchError((error: HttpErrorResponse)=> {
+          return throwError(error);
+        }
+      )
+ ) }
+
+
+// // Add candidate
+// AddCandidate(data: any): Observable<any> {
+//   let API_URL = `${this.apiUrl}fiche`;
+//   return this.http.post(API_URL, data)
+//     .pipe(
+//       catchError((error: HttpErrorResponse)=> {
+//         return throwError(error);
+//       })
+//     )
+
+
+// }
+
+
+
   // PUT Method
   public putDataX(credentials, type): Observable<any> {
     return this.http.put(this.apiUrl + type, credentials).pipe(

@@ -16,13 +16,16 @@ import { environment } from '../environments/environment';
 import { ConfirmationDialogComponent } from './dialog/confirmation-dialog/confirmation-dialog.component';
 import { EditDialogComponent } from './dialog/edit-dialog/edit-dialog.component';
 import { DataTablesModule } from 'angular-datatables';
+import { PrintDialogComponent } from './dialog/print-dialog/print-dialog.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ConfirmationDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    PrintDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ import { DataTablesModule } from 'angular-datatables';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     DataTablesModule
   ],
-  entryComponents: [ConfirmationDialogComponent, EditDialogComponent],
+  entryComponents: [ConfirmationDialogComponent, EditDialogComponent,PrintDialogComponent],
   providers: [RequestCacheService, httpInterceptorProviders, ApiService],
   bootstrap: [AppComponent]
 })

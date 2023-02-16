@@ -15,33 +15,58 @@
                 <span class="sr-only">Loading...</span>
               </div>
             </div>
+
+
+            
+              
+          
+            
+          
+            
             <table *ngIf="!loading" datatable [dtOptions]="dtOptions" class="table table-hover" cdkDropList cdkDragLockAxis="y"
             (cdkDropListDropped)="dropTable($event);">
               <thead>
                 <tr>
                   <!-- <th scope="col">#</th> -->
-                  <th scope="col">ID</th>
-                  <th scope="col">First name</th>
-                  <th scope="col">Last name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Date of Birth</th>
-                  <th scope="col">Controls</th>
+                  
+                  <th scope="col">Date</th>
+                  <th scope="col">Nom et prénom </th>
+                  <th scope="col">Tel</th>
+              
+                  <th scope="col">Désignation </th>
+                  <th scope="col">Frais </th>
+                  <th scope="col">Etat </th>                 
+                   <th scope="col"> Actions</th>
+
                 </tr>
               </thead>
               <tbody *ngIf="persons?.length != 0">
                 <tr *ngFor="let person of persons; let i = index;" cdkDrag>
                   <!-- <td scope="row">{{i+1}}</td> -->
-                  <td>{{ person.id }}</td>
-                  <td>{{ person.first_name }}</td>
-                  <td>{{ person.last_name }}</td>
-                  <td>{{ person.email }}</td>
-                  <td>{{person.DOB | date:'dd/MMM/yyyy'}}</td>
+                  
+                  <td data-sort='YYYYMMDD'>{{ person.date | date:'dd/MMM/yyyy'}}</td>
+                  <td>{{ person.prenom   }} &nbsp; {{ person.nom}}</td>
+                  <td>{{ person.tel }}</td>
+              
+                  <td>{{person.designation }}</td>
+                  <td>{{person.frais_diagnostic }}</td>
+                  <td>{{person.etat }}</td>
+              
                   <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="action controls">
+                      
                       <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary"
                         (click)="openEditDialog(person)">
                         <mat-icon aria-label="Edit">edit</mat-icon>
                       </button>
+
+                      
+
+                      <button mat-icon-button matTooltip="Click to print" class="iconbutton" color="primary"
+                      (click)="openPrintDialog(person)">
+                      <mat-icon aria-label="print">print</mat-icon>
+                    </button>
+
                       <button mat-icon-button matTooltip="Click to Delete" (click)="openDeleteDialog(person)"
                         class="iconbutton" color="warn">
                         <mat-icon aria-label="Delete">delete</mat-icon>

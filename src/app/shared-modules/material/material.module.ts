@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import {MatRadioModule} from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -26,6 +27,7 @@ import {CdkTableModule} from '@angular/cdk/table';
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatRadioModule,
     MatInputModule,
     MatProgressBarModule,
     MatSidenavModule,
@@ -45,6 +47,7 @@ import {CdkTableModule} from '@angular/cdk/table';
   exports: [
     MatSnackBarModule,
     MatIconModule,
+    MatRadioModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
