@@ -13,8 +13,8 @@ env:
   Branches: main
   MainBranch: main
   NPMRegistry: https://registry.npmjs.org/
-  InstallCommand: ng new 
-  BuildCommand: ng build
+  InstallCommand: npm i
+  BuildCommand: ng build 
   Output: ./dist
 
 jobs:
