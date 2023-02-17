@@ -5,7 +5,7 @@
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
-  "start_url": "https://sonomusic-sav.netlify.app",
+  "start_url": "https://sav-sono-music.herokuapp.com",
   "icons": [
     {
       "src": "assets/icons/72.png",
