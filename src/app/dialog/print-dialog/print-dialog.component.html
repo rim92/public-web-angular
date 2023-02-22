@@ -1,7 +1,8 @@
 
 
-  <button (click)="printMe()" class="mat-raised-button mat-button-base mat-primary">Print</button>
   
+  <div  [ngStyle]="{'top':'0.51i','left':'3.03in','width':'2.04in','line-height':'0.40in'}">
+    <button (click)="printMe()" class="mat-raised-button mat-button-base mat-primary">Print</button>
 <div id="section-to-print">
 <nav>
 <div class="row" style="top:0px">
@@ -18,9 +19,7 @@
 </div>
 </nav>
 
-<div class="container p-0" >
-  
-    
+<div class="container p-0" > 
   <div class="row">
   <div class="card border-0 rounded-0 bg-white">
         <div class="card-body p-0">
@@ -29,13 +28,13 @@
             <table  style=" border: 1px solid black;width:800px" >
               <th  [ngStyle]="{'text-align':'center'}"> INFORMATION SUR LE PRODUIT</th>
             <tbody>
-            <tr >
-            <td >
+            <tr>
+            <td>
               <p [ngStyle]="{'font-family':'Cambria'}"><strong>Date d'entrée:</strong>&nbsp; {{userdata.editUser.date | date:"dd-MM-yy"}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"> <strong>Marque:</strong>&nbsp; {{userdata.editUser.nom}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"><strong>Modèle:</strong>&nbsp; {{userdata.editUser.prenom}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"><strong>Numéro de série </strong>&nbsp; {{userdata.editUser.designation}}</p>
-                        <p  [ngStyle]="{'font-family':'Cambria'}"><strong>Date d'achat:</strong> &nbsp; {{userdata.editUser.panne_client}}</p>
+            <p  [ngStyle]="{'font-family':'Cambria'}"><strong>Date d'achat:</strong> &nbsp; {{userdata.editUser.panne_client}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"><strong>Garantie :</strong> &nbsp; {{userdata.editUser.garantie}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"><strong>J'autorise la r&eacute;paration int&eacute;grale:  &nbsp; {{userdata.editUser.reparation}}</strong></p>
             <p  [ngStyle]="{'font-family':'Cambria'}" *ngIf="userdata.editUser.frais_diagnostic=='no'"><strong> Service Non payé à l'avance </strong></p>
@@ -67,16 +66,10 @@
           </tbody>
           </table>
 
-
-
-
-
-        
       </div>
       
     </div>
 <br>
-    
     <div class="card-body p-0">
       <div class="row mx-0">
         
@@ -88,12 +81,10 @@
         <td >
           <p [ngStyle]="{'font-family':'Cambria'}"><strong>Nom et prénom :</strong>&nbsp; {{userdata.editUser.prenom}}&nbsp; {{userdata.editUser.nom}}  </p>
         
-        </td>
-        <td >
+        
           <p [ngStyle]="{'font-family':'Cambria'}"><strong>Tel :</strong>&nbsp; {{userdata.editUser.tel}}&nbsp; {{userdata.editUser.nom}}  </p>
         
-        </td>
-        <td >
+        
           <p [ngStyle]="{'font-family':'Cambria'}"><strong>Email :</strong>&nbsp; {{userdata.editUser.email}}&nbsp; {{userdata.editUser.nom}}  </p>
         
         </td>
@@ -124,5 +115,5 @@
 </div>
   
   
-  
+  </div>
   
