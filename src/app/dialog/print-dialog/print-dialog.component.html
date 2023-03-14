@@ -30,15 +30,15 @@
             <tbody>
             <tr>
             <td>
-              <p [ngStyle]="{'font-family':'Cambria'}"><strong>Date d'entrée:</strong>&nbsp; {{userdata.editUser.date | date:"dd-MM-yy"}}</p>
+            <p [ngStyle]="{'font-family':'Cambria'}"><strong>Date d'entrée:</strong>&nbsp; {{userdata.editUser.date | date:"dd-MM-yy"}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"> <strong>Marque:</strong>&nbsp; {{userdata.editUser.nom}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"><strong>Modèle:</strong>&nbsp; {{userdata.editUser.prenom}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"><strong>Numéro de série </strong>&nbsp; {{userdata.editUser.designation}}</p>
-            <p  [ngStyle]="{'font-family':'Cambria'}"><strong>Date d'achat:</strong> &nbsp; {{userdata.editUser.panne_client}}</p>
+            <p  [ngStyle]="{'font-family':'Cambria'}"  ><strong>Date d'achat:</strong> &nbsp; {{userdata.editUser.date_achat}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"><strong>Garantie :</strong> &nbsp; {{userdata.editUser.garantie}}</p>
             <p  [ngStyle]="{'font-family':'Cambria'}"><strong>J'autorise la r&eacute;paration int&eacute;grale:  &nbsp; {{userdata.editUser.reparation}}</strong></p>
             <p  [ngStyle]="{'font-family':'Cambria'}" *ngIf="userdata.editUser.frais_diagnostic=='no'"><strong> Service Non payé à l'avance </strong></p>
-            <p   [ngStyle]="{'font-family':'Cambria'}" *ngIf="userdata.editUser.frais_diagnostic=='yes'"><strong> Service  payé à l'avance </strong></p>	
+            <p  [ngStyle]="{'font-family':'Cambria'}" *ngIf="userdata.editUser.frais_diagnostic=='yes'"><strong> Service  payé à l'avance </strong></p>	
             
             </td>
             </tr>
@@ -101,10 +101,6 @@
       
   </div>
   
-
-
-
-
 </div>
   
 <div class="row">

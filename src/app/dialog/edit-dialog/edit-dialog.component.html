@@ -151,7 +151,7 @@
 
               <div class="col-md-6 mb-3">
                 <mat-form-field class="w-100">
-                  <input matInput placeholder="Serial number" formControlName="num_serie" autocomplete="off">
+                  <input matInput placeholder="Serial number" formControlName="num_serie" autocomplete="off" required>
                   <mat-error *ngIf="userForm.get('num_serie').dirty || userForm.get('num_serie').touched">
                     <span *ngIf="userForm.get('num_serie').hasError('required')">
                       Serial number is required !
